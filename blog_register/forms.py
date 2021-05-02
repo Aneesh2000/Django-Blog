@@ -8,6 +8,7 @@ class BlogForm(forms.ModelForm):
         labels = {
             'title': 'Title',
             'description': 'Description',
+            'auth_name':'Auther',
             # 'img':'Image'
         }
     
