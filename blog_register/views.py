@@ -16,7 +16,7 @@ def blog_form(request,id=0):
         return render(request,"blog_register/blog_form.html",{'form':form})
     else:
         if id==0:
-            form = BlogForm(request.POST)
+            form = BlogForm(request.POST, request.FILES)
         else:
             blog = Blog.objects.get(pk=id)
             form = BlogForm(request.POST,instance =blog)

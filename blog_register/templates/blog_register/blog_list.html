@@ -1,41 +1,53 @@
-{% extends "blog_register/base.html"%}
-
-
-{% block content %}
+{% extends "blog_register/base.html"%} {% block content %}
 <table class="table table-borderless">
-    <thead class="border-bottom font-weight-bold">
-        <tr>
-            <td>Title</td>
-            <td>Description</td>
-            <td>Auther</td>
-            
-            <td>
-                <a href="{% url 'blog_insert' %}" class="btn btn-outline-success">
-                    <i class="fas fa-plus"></i> Add New
-                </a>
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for blog in blog_list %}
-            <tr>
-                <td>{{blog.title}}</td>
-                <td>{{blog.description}}</td>
-                <td>{{blog.auth_name}}</td>
-            
-                <td>
-                    <a href="{% url 'blog_update' blog.id %}" class="btn text-secondary px-0">
-                        <i class="far fa-edit fa-lg"></i>
-                    </a>
-                    <form action="{% url 'blog_delete' blog.id %}" method="post" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn">
-                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
+  <thead class="border-bottom font-weight-bold">
+    <tr>
+      <td>Title</td>
+      <td>Description</td>
+      <td>Auther</td>
+      <td>Image</td>
+      <td>Category</td>
+      <td>Gender</td>
+      <td>Created_on</td>
+
+      <td>
+        <a href="{% url 'blog_insert' %}" class="btn btn-outline-success">
+          <i class="fas fa-plus"></i> Add New
+        </a>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for blog in blog_list %}
+    <tr>
+      <td>{{blog.title}}</td>
+      <td>{{blog.description}}</td>
+      <td>{{blog.auth_name}}</td>
+      <td><img src="{{blog.img.url}}" alt="image" /></td>
+      <td>{{blog.category}}</td>
+      <td>{{blog.gender}}</td>
+      <td>{{blog.created_at}}</td>
+
+      <td>
+        <a
+          href="{% url 'blog_update' blog.id %}"
+          class="btn text-secondary px-0"
+        >
+          <i class="far fa-edit fa-lg"></i>
+        </a>
+        <form
+          action="{% url 'blog_delete' blog.id %}"
+          method="post"
+          class="d-inline"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn">
+            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock content%}

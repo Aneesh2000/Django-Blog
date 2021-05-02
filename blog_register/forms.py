@@ -9,6 +9,6 @@ class BlogForm(forms.ModelForm):
             'title': 'Title',
             'description': 'Description',
             'auth_name':'Auther',
-            # 'img':'Image'
+            'img':'Image'
         }
     
